@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+	</head>
+	<body>
+		<script type="text/javascript">
+			 Publish = {};
+			    (function(q){
+			        var topics = {};
+
+			        /*这个函数是一个闭包，又是匿名函数，无法获取这个主体的名字。而参数q的作用就是要传递主体。所以把功能都绑定到q这个对象上*/
+			        q.publish = function(topic){
+			            if(!topics[topic]){
+			                return 0;
+			            }
+			            for(var i = 0;i <topics[topic].length;i ++){
+			                topics[topic][i]();
+			            }     
+			        }
+
+			        q.subscribe = function(topic,fn){
+			            if(!topics[topic]){
+			                topics[topic] = [];
+			            }
+			            topics[topic].push(fn);
+			        }
+			        
+			        q.unsubscribe = function(topic,fn){
+			            if(!topics[topic]){
+			                return 0;
+			            }
+			            for(var i = 0;i <topics[topic].length;i ++){
+			                if(topics[topic][i] == fn){
+			                    topics[topic].splice(i,1);
+			                }
+			            }
+			        }
+			    }(Publish));
+
+			    //订阅
+			    Publish.subscribe("老板来了",function(){	//这种匿名函数无法取消订阅
+			    	console.log("别聊天了");
+			    })
+
+			    function stopPlaying(){
+			    	console.log("别玩了");
+			    }
+
+			    Publish.subscribe("老板来了",stopPlaying);//这种函数可以取消订阅
+
+			    Publish.publish("老板来了");
+
+			    //取消订阅
+			    Publish.unsubscribe("老板来了",stopPlaying);
+
+			    Publish.publish("老板来了");
+		</script>
+	</body>
+</html>
