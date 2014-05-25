@@ -1,12 +1,17 @@
 设计模式
 ============
+*   [类](#class)
+*   [发布/订阅模式](#PubSub)
 
-*[发布/订阅模式](#PubSub)
+<h2 id = "class">类</h2>
+###类定义
+>相同的属性和对象的功能的集合
+
 
 
 
 <h2 id = "PubSub">发布/订阅模式</h2>
-***思路
+###思路
 >这个模式中有一个topics的放事件的列表，是一个obj。
 key为订阅的事件，数组中为发布时执行的fn。如
     topics = {
@@ -17,12 +22,12 @@ key为订阅的事件，数组中为发布时执行的fn。如
 发布时，遍历topics中该事件的key中的数组，并全部执行
 取消订阅时，遍历topics中该事件key中的数组。若存在数组中某函数和要移除的fn相同，就移除该数组
 
-***代码
+###代码
+[SubPub](/SubPub.html)
 
     Publish = {};
     (function(q){
         var topics = {};
-
         /*这个函数是一个闭包，又是匿名函数，无法获取这个主体的名字。而参数q的作用就是要传递主体。所以把功能都绑定到q这个对象上*/
         q.publish = function(topic){
             if(!topics[topic]){
@@ -52,7 +57,8 @@ key为订阅的事件，数组中为发布时执行的fn。如
         }
     }(Publish));
 
->***示例
+###示例
+
     //订阅
         Publish.subscribe("老板来了",function(){    //这种匿名函数无法取消订阅
             console.log("别聊天了");
