@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <script type="text/javascript">
+        function Cat(){
+                var specis = "cat";    //字段
+                var name = "wuming";  //字段    
+                var sex = "male";//属性
+                
+
+                Object.defineProperty(this,"name",{
+                        set:function(name){
+                            name = name;
+                        },
+                        get:function(){
+                            return name;
+                        }
+                });
+
+                Object.defineProperty(this,"sex",{
+                            set:function(sex){
+                                sex = sex;
+                            },
+                            get:function(){
+                                return sex;
+                            }
+                });
+             }
+          	
+            var cat = new Cat();
+            cat.name = "miao";
+            console.log(cat.name);
+
+
+        </script>
+    </body>
+</html>

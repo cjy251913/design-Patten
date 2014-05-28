@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <script type="text/javascript">
+        function Animal(){}   
+
+        Animal.prototype = {    //抽象类的原型方法
+            shout:function(){
+                alert(this.shoutName);  //shoutName即使还没定义都没关系。只要没调用就不会出错
+            }
+        }
+
+       function Cat(name){      
+            this.name = name;       //新类的属性
+       }
+       Cat.prototype = new Animal();    //新类从Animal那里搬来了全部东西
+       /*Cat.prototype = {        //新类原型还可以再添加一些东西。但如果这样就重写原型了。从Animal那里继承来的所有东西都不见了
+            shoutName : "miao"
+       }
+*/     
+       Cat.prototype.shoutName = "miao";    //覆盖从Animal那里继承来的shouName
+       var cat1 = new Cat("guapi");
+       cat1.shout();    //miao
+
+
+        </script>
+    </body>
+</html>
+
+
+
+

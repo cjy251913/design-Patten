@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <script type="text/javascript">
+        function Cat(){
+            this.name = "wuming";
+            this.age = 10;
+        }
+
+        Cat.prototype = {
+            getName : function(){
+                return this.name;
+            },
+            setName : function(name){
+                this.name = name;
+            },
+            shout : function(){
+                alert("miao");
+            }
+        }
+
+        var cat = new Cat();
+        cat.setName("xiaomiao");
+        alert(cat.getName());
+
+        </script>
+    </body>
+</html>
+
+
+
+

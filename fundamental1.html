@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<script type="text/javascript">
+		 cat = {
+            specis : "cat",     //字段
+            _name :  "wuming",  //字段  要用属性器更改的加__
+            _sex : "male",      //属性
+            eat : function(){   //方法
+                alert("I can eat fish!");
+            }
+        };
+        Object.defineProperty(cat,"name",{  //注意这里name是没有__
+                    set:function(name){
+                        this._name = name;
+                    },
+                    get:function(){
+                        return this._name;
+                    }
+                });
+        Object.defineProperty(cat,"sex",{
+                    set:function(sex){
+                        this._sex = sex;
+                    },
+                    get:function(){
+                        return this._sex;
+                    }
+                });
+       
+        cat.name = "xiaomiao";      //注意这里改写的也没有__
+        console.log(cat.name);      //这里也是
+        console.log(cat.sex);
+        cat.eat();
+		</script>
+	</body>
+</html>
