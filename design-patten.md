@@ -6,3 +6,5 @@
 *   [继承](/inherit.md)
 *   [多态](/multimodel.md)
 *   [抽象类](/abstract.md)
+*   [装饰者模式](/decorator.md)
+*   [构造者模式](/constructor.md)

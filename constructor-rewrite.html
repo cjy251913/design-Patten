@@ -4,43 +4,42 @@
 </head>
 <body>
     <script type="text/javascript">
-    function Person(name){
+    function Person(name,age,job){
         this.name = name;
+        this.age = age;
+        this.job = job;
     }
-    Person.prototype.getName = function(){
+    Person.prototype.sayName = function(){
         return this.name;
     }
 
-    var driver = new Person("laowang");
+    var driver = new Person("laowang",29,"driver");
     console.log(driver.constructor === Person);//true
     console.log(Person.prototype.constructor === Person);//true
     console.log(Person.constructor === Object);//false
     
-    但是，重写原型后，constructor就改变指向了
-
+   
+    //重写后，conscructor改变了
     Person.prototype = {
-        getName:function(){
+        sayName:function(){
             return this.name;
         }
     }
     console.log(Person.prototype.constructor === Person);//false
+    //注意，这里的driver还是上例的。constructor没改变
+    console.log(driver.constructor === Person);//true
+    
+    //重新指向后就好了
+    var driver = new Person("laowang",29,"driver");
     console.log(driver.constructor === Person);//false
-
-    为什么呢?
-    因为重写原型后，相当于
-    Person.prototype = new Object({
-        getName:function(){
-            return this.name;
-        }
-    })
 
     console.log(Person.prototype.constructor === Object);//true
     console.log(driver.constructor === Object);//true
 
-    要怎么恢复呢？
-    重写Person.prototype.constructor就好了
+    
+    //重写Person.prototype.constructor就好了
 
-    Person.prototype.constructor === Person;
+    Person.prototype.constructor = Person;
     console.log(Person.prototype.constructor === Person);//true
     console.log(driver.constructor === Person);//true
     </script>

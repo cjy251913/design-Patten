@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>test</title>
+</head>
+<body>
+    <script type="text/javascript">
+    var Person = {};
+    Object.defineProperty = (Person,"name",{
+        value:"wuming",
+        writable:false
+    });
+
+    var driver = Object.create(Person);
+    driver.name = "laowang";
+    console.log(driver.name);   //laowang
+    //事实证明在严格属性下才可以作用。可我还不知道严格属性怎么触发
+
+    
+    </script>
+</body>
+</html>
+
+
+
